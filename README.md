@@ -5,6 +5,7 @@
 ## Timeline of Creation
 
 From May 2020 - August 2022: Learned ML concepts through Stanford Coursera course. Gathered testing data, implemented SVM to classify data, achieved >95% accuracy.
+
 From May 2024 - Present: Adding functionality through user interaction so classification model can be applied to a user's inbox.
 
 ## Use 
