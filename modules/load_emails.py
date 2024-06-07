@@ -1,3 +1,5 @@
+"""Module providing a way to load emails from a given directory"""
+
 import os
 
 def load_emails(directory):

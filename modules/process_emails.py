@@ -1,4 +1,4 @@
-import os
+"""Module providing functions that together are able to take an email as a list of words and output it as a vector for use in the model"""
 
 # accessing the dictionary
 d = open("../dictionary.txt", "r")
@@ -21,11 +21,9 @@ def vectorize_email(indices):
     return vector
 
 def process_emails(emails):
-    print("Processing... {}", len(emails))
     processed_emails = []
     for email in emails:
         indexed_email = index_email(email)
         vectorized_email = vectorize_email(indexed_email)
         processed_emails.append(vectorized_email)
-    print("processed {}", len(processed_emails))
     return processed_emails

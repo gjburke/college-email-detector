@@ -1,4 +1,5 @@
-import os
+"""Module with a function to make a dicitonary from given emails"""
+
 from collections import Counter
 from load_emails import load_emails
 

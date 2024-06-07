@@ -1,11 +1,13 @@
+"""Modulde providing the get_emails function and label_emails function that use the gmail api"""
+
+import os.path
+import base64
+import re
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-import os.path
-import base64
-import re
 from bs4 import BeautifulSoup
 import nltk
 from nltk.stem import PorterStemmer
@@ -147,20 +149,16 @@ def label_emails(predictions, ids, label_name):
     if not contains:
       service.users().labels().create(userId='me', body=new_label).execute()
     # Get the label id as to add it
+    results = service.users().labels().list(userId='me').execute()
+    labels = results.get('labels', [])
     label_id = ""
     for label in labels:
       if label['name'] == label_name:
         label_id = label['id']
     # Iterate over all the emails ids
-    print("label_id = " + str(label_id))
     for i in range(0, len(predictions), 1):
-      print(predictions[i])
       if predictions[i] == 1:
-        print("Adding label")
         service.users().messages().modify(userId='me', id=ids[i], body={'addLabelIds': [label_id]}).execute()
   except HttpError as error:
     # Handle errors from gmail API.
     print(f"An error occurred: {error}")
-
-#if __name__ == "__main__":
-#  print(get_emails(5))
